@@ -1,15 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/scrape.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/scrape.js": {
+      "runtime": "nodejs18.x",
+      "memory": 1024,
+      "maxDuration": 30
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/scrape.js"
-    }
-  ]
+  },
+  "env": {
+    "AWS_LAMBDA_JS_RUNTIME": "nodejs18.x"
+  }
 }

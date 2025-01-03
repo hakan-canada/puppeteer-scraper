@@ -2,11 +2,13 @@ import puppeteer from "puppeteer-core";
 import chromium from "chrome-aws-lambda";
 
 export default async function handler(req, res) {
+  let browser = null;
+
   try {
-    const browser = await chromium.puppeteer.launch({
+    browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
+      executablePath: await chromium.executablePath || "/usr/bin/chromium-browser",
       headless: chromium.headless,
     });
 
@@ -22,9 +24,12 @@ export default async function handler(req, res) {
       }));
     });
 
-    await browser.close();
     res.status(200).json({ success: true, data: hospitals });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  } finally {
+    if (browser !== null) {
+      await browser.close();
+    }
   }
 }
