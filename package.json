@@ -1,17 +1,7 @@
 {
   "name": "puppeteer-scraper",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "chrome-aws-lambda": "^10.1.0",
-    "puppeteer": "^23.11.1",
-    "puppeteer-core": "^10.4.0"
+    "puppeteer": "^21.0.0"
   }
 }
