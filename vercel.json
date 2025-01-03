@@ -1,11 +1,15 @@
 {
-    "version": 2,
-    "functions": {
-      "api/*.js": {
-        "runtime": "nodejs18.x",
-        "memory": 1024,
-        "maxDuration": 10
-      }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/scrape.js",
+      "use": "@vercel/node"
     }
-  }
-  
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/scrape.js"
+    }
+  ]
+}
